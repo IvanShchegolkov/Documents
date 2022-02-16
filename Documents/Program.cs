@@ -10,48 +10,16 @@ namespace Documents
 {
     internal class Program
     {
-        //static void Main(string[] args)
-        //{
-        //    string path = Path.GetFullPath(@"..\..\..\");
-        //    Console.WriteLine(path)
-        //}
         static async Task Main()
         {
             string path = Path.GetFullPath(@"..\..\..\" + @$"\test.json");
             StagesList stages = await JsonFileReader.ReadAsync<StagesList>(path);
 
+            Action action = new Action();
+            action.Run(stages);
 
 
-
-            Console.WriteLine(path);
-            Console.WriteLine(stages);
-        }
-        public static class JsonFileReader
-        {
-            public static async Task<T> ReadAsync<T>(string filePath)
-            {
-                using FileStream stream = File.OpenRead(filePath);
-                return await JsonSerializer.DeserializeAsync<T>(stream);
-            }
+            Console.WriteLine("");
         }
     }
 }
-
-
-
-
-
-
-
-//{
-//    "Stages": [
-//      {
-//        "Name": "Согласование инициатором",
-//    "Performer": "Инициатор"
-//      },
-//    {
-//        "Name": "Согласование инициатором",
-//    "Performer": "Инициатор"
-//    }
-//  ]
-//}
